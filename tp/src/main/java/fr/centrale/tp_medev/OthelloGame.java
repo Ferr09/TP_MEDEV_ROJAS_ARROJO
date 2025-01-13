@@ -65,4 +65,23 @@ public class OthelloGame {
         board.printScore();
     }
 
+    /**
+     * Converts a letter from 'a' to 'h' into an index from 0 to 7. This
+     * function ensures that the conversion works for both uppercase and
+     * lowercase letters. If the input is outside the range 'a' to 'h', it
+     * returns -1 to indicate an invalid input.
+     *
+     * @param column A character representing the column
+     * @return The corresponding index for the column letter or -1 if column is
+     * not valid
+     */
+    public int convertToIndex(char column) {
+        column = Character.toLowerCase(column);
+        if (column >= 'a' && column <= 'h') {
+            return column - 'a';
+        } else {
+            return -1;
+        }
+    }
+
 }
