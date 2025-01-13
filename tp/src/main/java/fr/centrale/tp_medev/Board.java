@@ -125,4 +125,82 @@ public class Board {
         return false;
     }
 
+    /**
+     * Makes a move on the board and flips captured pieces.
+     *
+     * @param row The row of the move.
+     * @param col The column of the move.
+     * @param player The symbol of the player making the move.
+     */
+    public void makeMove(int row, int col, char player) {
+        board[row][col] = player;
+
+        for (int dr = -1; dr <= 1; dr++) {
+            for (int dc = -1; dc <= 1; dc++) {
+                if (dr != 0 || dc != 0) {
+                    if (canCapture(row, col, dr, dc, player)) {
+                        flipPieces(row, col, dr, dc, player);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Flips the pieces in a specific direction after a valid move.
+     *
+     * @param row The starting row.
+     * @param col The starting column.
+     * @param dr The row direction (-1, 0, or 1).
+     * @param dc The column direction (-1, 0, or 1).
+     * @param player The symbol of the player.
+     */
+    private void flipPieces(int row, int col, int dr, int dc, char player) {
+        int r = row + dr;
+        int c = col + dc;
+
+        while (board[r][c] != player) {
+            board[r][c] = player;
+            r += dr;
+            c += dc;
+        }
+    }
+
+    /**
+     * Checks if there are any valid moves for a given player.
+     *
+     * @param player The symbol of the player.
+     * @return True if there is at least one valid move, false otherwise.
+     */
+    public boolean hasValidMove(char player) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (isValidMove(i, j, player)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Prints the current score for both players.
+     */
+    public void printScore() {
+        int blackScore = 0;
+        int whiteScore = 0;
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board[i][j] == BLACK) {
+                    blackScore++;
+                } else if (board[i][j] == WHITE) {
+                    whiteScore++;
+                }
+            }
+        }
+
+        System.out.println("Black (B): " + blackScore);
+        System.out.println("White (W): " + whiteScore);
+    }
 }
