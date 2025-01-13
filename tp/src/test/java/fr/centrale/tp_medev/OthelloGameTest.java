@@ -45,5 +45,16 @@ public class OthelloGameTest {
         assertTrue(board.isValidMove(2, 3, Board.BLACK));
         assertFalse(board.isValidMove(0, 0, Board.BLACK));
     }
+
+    /**
+     * Tests the creation of a player and ensures attributes are correctly set.
+     */
+    @Test
+    public void testPlayerCreation() {
+        Player player = new Player("Player 1", Board.BLACK);
+        assertEquals("Player 1", player.getName());
+        assertEquals(Board.BLACK, player.getSymbol());
+    }
+
     
 }
