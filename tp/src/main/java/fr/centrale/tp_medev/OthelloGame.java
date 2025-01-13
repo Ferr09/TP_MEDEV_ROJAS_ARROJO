@@ -91,4 +91,13 @@ public class OthelloGame {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
+    /**
+     * Main method to start the Othello game.
+     *
+     * @param args Command-line arguments (not used).
+     */
+    public static void main(String[] args) {
+        OthelloGame game = new OthelloGame();
+        game.playGame();
+    }
 }
