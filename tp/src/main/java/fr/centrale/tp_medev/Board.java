@@ -103,7 +103,7 @@ public class Board {
      * @param player The symbol of the player.
      * @return True if pieces can be captured, false otherwise.
      */
-    private boolean canCapture(int row, int col, int dr, int dc, char player) {
+    public boolean canCapture(int row, int col, int dr, int dc, char player) {
         int r = row + dr;
         int c = col + dc;
         char opponent = (player == BLACK) ? WHITE : BLACK;
@@ -155,7 +155,7 @@ public class Board {
      * @param dc The column direction (-1, 0, or 1).
      * @param player The symbol of the player.
      */
-    private void flipPieces(int row, int col, int dr, int dc, char player) {
+    public void flipPieces(int row, int col, int dr, int dc, char player) {
         int r = row + dr;
         int c = col + dc;
 
