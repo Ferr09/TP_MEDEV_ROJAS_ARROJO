@@ -166,4 +166,20 @@ public class Board {
         }
     }
 
+    /**
+     * Checks if there are any valid moves for a given player.
+     *
+     * @param player The symbol of the player.
+     * @return True if there is at least one valid move, false otherwise.
+     */
+    public boolean hasValidMove(char player) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (isValidMove(i, j, player)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
