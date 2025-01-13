@@ -36,7 +36,7 @@ public class Board {
     /**
      * Initializes the board with the default starting position of pieces.
      */
-    private void initializeBoard() {
+    public void initializeBoard() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 board[i][j] = EMPTY;
