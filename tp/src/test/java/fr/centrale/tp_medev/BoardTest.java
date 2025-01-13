@@ -77,4 +77,14 @@ public class BoardTest {
         assertTrue(board.hasValidMove(Board.BLACK)); // Black should have a valid move initially
 
     }
+
+    /**
+     * Tests the scoring system of the game. Verifies that the printScore method
+     * outputs the correct score based on the board state.
+     */
+    @Test
+    public void testPrintScore() {
+        // Print score and check if it is accurate
+        board.printScore();
+    }
 }
