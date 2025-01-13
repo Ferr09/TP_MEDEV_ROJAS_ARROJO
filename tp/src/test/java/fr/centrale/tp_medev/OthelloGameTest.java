@@ -65,5 +65,17 @@ public class OthelloGameTest {
         assertTrue(board.canCapture(2, 3, 1, 0, Board.BLACK));
         assertFalse(board.canCapture(0, 0, 1, 0, Board.BLACK));
     }
+
+    /**
+     * Tests the initialization of the Othello game to ensure all components are correctly created.
+     */
+    @Test
+    public void testGameInitialization() {
+        OthelloGame game = new OthelloGame();
+        assertNotNull(game);
+        assertNotNull(game.getBoard());
+        assertNotNull(game.getPlayer1());
+        assertNotNull(game.getPlayer2());
+    }
     
 }
