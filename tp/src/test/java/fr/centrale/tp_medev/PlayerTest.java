@@ -28,4 +28,13 @@ public class PlayerTest {
         // Check if the player's name is correct
         assertEquals("Player 2", player.getName(), "The player's name does not match the expected value.");
     }
+
+    @Test
+    public void testGetSymbol() {
+        // Create a new player
+        Player player = new Player("Player 1", 'B');
+
+        // Check if the player's symbol is correct
+        assertEquals('B', player.getSymbol(), "The player's symbol does not match the expected value.");
+    }
 }
