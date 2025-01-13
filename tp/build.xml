@@ -1,0 +1,45 @@
+<project name="OthelloGame" basedir="." default="full">
+    
+    <!-- Clean task: remove build and dist directories -->
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="dist"/>
+        <delete dir="doc"/>
+    </target>
+
+    <!-- Initialization task: create necessary directories -->
+    <target name="init">
+        <mkdir dir="build"/>
+        <mkdir dir="dist"/>
+        <mkdir dir="doc"/>
+    </target>
+
+    <!-- Compile task: compile the source files -->
+    <target name="compile" depends="init">
+        <javac srcdir="src/main/java" destdir="build" source="18" target="18">
+            <!-- No need to reference the lib directory since you are not using external libraries -->
+        </javac>
+    </target>
+
+    <!-- Jar task: create a JAR file from compiled classes -->
+    <target name="jar" depends="compile">
+        <jar destfile="dist/OthelloGame.jar" basedir="build"/>
+    </target>
+
+    <!-- Documentation generation task (excluding test files) -->
+    <target name="docs">
+        <mkdir dir="doc"/>
+
+        <!-- Fix the javadoc configuration, excluding test files -->
+        <javadoc destdir="doc" classpath="build">
+            <fileset dir="src/main/java" includes="**/*.java"/>
+        </javadoc>
+    </target>
+
+    <!-- Full build process: clean, compile, create JAR, generate docs -->
+    <target name="full" depends="clean, compile, jar, docs"/>
+
+    <!-- Add a build target for convenience (same as full) -->
+    <target name="build" depends="full"/>
+
+</project>
