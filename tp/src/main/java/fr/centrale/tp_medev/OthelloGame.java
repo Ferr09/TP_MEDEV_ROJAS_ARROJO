@@ -83,4 +83,15 @@ public class OthelloGame {
             return -1;
         }
     }
+
+     /**
+     * Switches the current player to the other player.
+     */
+    private void switchPlayer() {
+        currentPlayer = (currentPlayer == player1) ? player2 : player1;
+    }
+
+    
+
+    
 }
