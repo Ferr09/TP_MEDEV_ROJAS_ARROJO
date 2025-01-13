@@ -37,4 +37,15 @@ public class PlayerTest {
         // Check if the player's symbol is correct
         assertEquals('B', player.getSymbol(), "The player's symbol does not match the expected value.");
     }
+
+    @Test
+    public void testSymbolIsNotInvalid() {
+        // Try to create a player with an invalid symbol
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new Player("PLayer 1", 'X');
+        });
+
+        // Verify that the correct exception is thrown
+        assertEquals("The symbol must be 'B' or 'W'.", exception.getMessage());
+    }
 }
