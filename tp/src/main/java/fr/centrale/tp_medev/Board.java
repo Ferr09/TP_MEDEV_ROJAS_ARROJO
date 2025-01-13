@@ -125,4 +125,25 @@ public class Board {
         return false;
     }
 
+    /**
+     * Makes a move on the board and flips captured pieces.
+     *
+     * @param row The row of the move.
+     * @param col The column of the move.
+     * @param player The symbol of the player making the move.
+     */
+    public void makeMove(int row, int col, char player) {
+        board[row][col] = player;
+
+        for (int dr = -1; dr <= 1; dr++) {
+            for (int dc = -1; dc <= 1; dc++) {
+                if (dr != 0 || dc != 0) {
+                    if (canCapture(row, col, dr, dc, player)) {
+                        flipPieces(row, col, dr, dc, player);
+                    }
+                }
+            }
+        }
+    }
+
 }
