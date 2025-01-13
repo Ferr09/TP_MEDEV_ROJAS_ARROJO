@@ -87,4 +87,14 @@ public class BoardTest {
         // Print score and check if it is accurate
         board.printScore();
     }
+
+    /**
+     * Tests an invalid move on the board. Ensures that the isValidMove method
+     * correctly identifies invalid moves that cannot flip any pieces.
+     */
+    @Test
+    public void testInvalidMove() {
+        // Invalid move test for Black (should return false)
+        assertFalse(board.isValidMove(2, 2, Board.BLACK)); // No piece to flip, not a valid move
+    }
 }
