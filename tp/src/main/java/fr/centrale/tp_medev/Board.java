@@ -203,4 +203,14 @@ public class Board {
         System.out.println("Black (B): " + blackScore);
         System.out.println("White (W): " + whiteScore);
     }
+    
+    
+    /**
+     * Getter method to access the board.
+     *
+     * @return The board as a 2D array.
+     */
+    public char[][] getBoard() {
+        return this.board;
+    }
 }
