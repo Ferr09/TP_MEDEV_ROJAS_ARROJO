@@ -68,4 +68,29 @@ public class Board {
         }
     }
 
+    /**
+     * Checks if a move is valid for the given player.
+     *
+     * @param row The row of the move.
+     * @param col The column of the move.
+     * @param player The symbol of the player making the move.
+     * @return True if the move is valid, false otherwise.
+     */
+    public boolean isValidMove(int row, int col, char player) {
+        if (row < 0 || row >= size || col < 0 || col >= size || board[row][col] != EMPTY) {
+            return false;
+        }
+
+        for (int dr = -1; dr <= 1; dr++) {
+            for (int dc = -1; dc <= 1; dc++) {
+                if (dr != 0 || dc != 0) {
+                    if (canCapture(row, col, dr, dc, player)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }
