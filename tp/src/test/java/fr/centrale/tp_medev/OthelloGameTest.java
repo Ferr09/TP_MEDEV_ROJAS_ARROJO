@@ -65,4 +65,14 @@ public class OthelloGameTest {
         assertEquals("Player 1", player.getName());
         assertEquals(Board.BLACK, player.getSymbol());
     }
+
+    /**
+     * Tests the logic for capturing opponent pieces in a specific direction.
+     */
+    @Test
+    public void testCaptureLogic() {
+        Board board = new Board(8);
+        assertTrue(board.canCapture(2, 3, 1, 0, Board.BLACK));
+        assertFalse(board.canCapture(0, 0, 1, 0, Board.BLACK));
+    }
 }
