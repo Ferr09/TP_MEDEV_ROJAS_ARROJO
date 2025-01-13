@@ -36,4 +36,14 @@ public class OthelloGameTest {
             }
         }
     }
+    /**
+     * Tests whether the validation of moves is working correctly for both valid and invalid cases.
+     */
+    @Test
+    public void testValidMove() {
+        Board board = new Board(8);
+        assertTrue(board.isValidMove(2, 3, Board.BLACK));
+        assertFalse(board.isValidMove(0, 0, Board.BLACK));
+    }
+    
 }
