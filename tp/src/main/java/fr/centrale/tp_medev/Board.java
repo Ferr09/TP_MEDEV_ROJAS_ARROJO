@@ -146,4 +146,24 @@ public class Board {
         }
     }
 
+    /**
+     * Flips the pieces in a specific direction after a valid move.
+     *
+     * @param row The starting row.
+     * @param col The starting column.
+     * @param dr The row direction (-1, 0, or 1).
+     * @param dc The column direction (-1, 0, or 1).
+     * @param player The symbol of the player.
+     */
+    private void flipPieces(int row, int col, int dr, int dc, char player) {
+        int r = row + dr;
+        int c = col + dc;
+
+        while (board[r][c] != player) {
+            board[r][c] = player;
+            r += dr;
+            c += dc;
+        }
+    }
+
 }
