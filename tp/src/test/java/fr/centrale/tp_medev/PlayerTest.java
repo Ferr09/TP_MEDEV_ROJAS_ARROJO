@@ -19,4 +19,13 @@ public class PlayerTest {
         // Check if the symbol is set correctly
         assertEquals('B', player.getSymbol(), "The player's symbol was not set correctly.");
     }
+
+    @Test
+    public void testGetName() {
+        // Create a new player
+        Player player = new Player("Player 2", 'W');
+
+        // Check if the player's name is correct
+        assertEquals("Player 2", player.getName(), "The player's name does not match the expected value.");
+    }
 }
