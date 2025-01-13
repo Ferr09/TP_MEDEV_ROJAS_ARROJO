@@ -63,4 +63,18 @@ public class BoardTest {
         assertEquals(Board.BLACK, board.getBoard()[3][4]);
         assertEquals(Board.WHITE, board.getBoard()[4][4]);
     }
+
+    /**
+     * Tests if a player has any valid moves available. Verifies that the method
+     * correctly identifies whether a player can make a move.
+     */
+    @Test
+    public void testHasValidMove() {
+        // Test hasValidMove for White
+        assertTrue(board.hasValidMove(Board.WHITE)); // White should have a valid move initially
+
+        // Test hasValidMove for Black
+        assertTrue(board.hasValidMove(Board.BLACK)); // Black should have a valid move initially
+
+    }
 }
