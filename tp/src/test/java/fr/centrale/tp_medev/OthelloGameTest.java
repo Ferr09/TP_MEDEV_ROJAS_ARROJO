@@ -75,4 +75,16 @@ public class OthelloGameTest {
         assertTrue(board.canCapture(2, 3, 1, 0, Board.BLACK));
         assertFalse(board.canCapture(0, 0, 1, 0, Board.BLACK));
     }
+
+    /**
+     * Tests the convertToIndex method for valid column input. This test checks
+     * the correct conversion of columns 'a' to 'h' to indices 0-7.
+     */
+    @Test
+    public void testConvertToIndexValid() {
+        assertEquals(0, game.convertToIndex('a'), "Column 'a' should map to index 0");
+        assertEquals(7, game.convertToIndex('h'), "Column 'h' should map to index 7");
+        assertEquals(0, game.convertToIndex('A'), "Column 'A' should map to index 0 (case insensitive)");
+        assertEquals(7, game.convertToIndex('H'), "Column 'H' should map to index 7 (case insensitive)");
+    }
 }
