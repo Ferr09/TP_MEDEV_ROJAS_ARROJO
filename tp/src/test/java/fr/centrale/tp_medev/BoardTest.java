@@ -45,4 +45,22 @@ public class BoardTest {
             }
         }
     }
+
+    /**
+     * Tests making a move on the board. This test ensures that a move is made
+     * correctly and that pieces are flipped where necessary.
+     */
+    @Test
+    public void testMakeMove() {
+        // Make a valid move for Black at (2, 3)
+        board.makeMove(2, 3, Board.BLACK);
+
+        // Assert that the move was made
+        assertEquals(Board.BLACK, board.getBoard()[2][3]);
+
+        // Assert that the White pieces are flipped
+        assertEquals(Board.BLACK, board.getBoard()[3][3]);
+        assertEquals(Board.BLACK, board.getBoard()[3][4]);
+        assertEquals(Board.WHITE, board.getBoard()[4][4]);
+    }
 }
