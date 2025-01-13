@@ -87,4 +87,15 @@ public class OthelloGameTest {
         assertEquals(0, game.convertToIndex('A'), "Column 'A' should map to index 0 (case insensitive)");
         assertEquals(7, game.convertToIndex('H'), "Column 'H' should map to index 7 (case insensitive)");
     }
+
+    /**
+     * Tests the convertToIndex method for invalid column input. This test
+     * checks that invalid characters (outside 'a' to 'h') return -1.
+     */
+    @Test
+    public void testConvertToIndexInvalid() {
+        assertEquals(-1, game.convertToIndex('i'), "Column 'i' should return -1");
+        assertEquals(-1, game.convertToIndex('z'), "Column 'z' should return -1");
+        assertEquals(-1, game.convertToIndex('1'), "Column '1' should return -1");
+    }
 }
