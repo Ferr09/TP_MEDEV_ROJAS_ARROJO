@@ -48,4 +48,24 @@ public class Board {
         board[4][4] = WHITE;
     }
 
+    /**
+     * Displays the board with columns labeled from 'a' to 'h' and rows labeled
+     * from 1 to 8
+     */
+    public void display() {
+        System.out.print("  ");
+        for (int i = 0; i < size; i++) {
+            System.out.print((char) ('a' + i) + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < size; i++) {
+            System.out.print((i + 1) + " ");
+            for (int j = 0; j < size; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }
