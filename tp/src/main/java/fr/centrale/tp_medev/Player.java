@@ -15,8 +15,12 @@ public class Player {
      *
      * @param name The name of the player.
      * @param symbol The symbol representing the player ('B' or 'W').
+     * @throws IllegalArgumentException if the symbol is not 'B' or 'W'.
      */
     public Player(String name, char symbol) {
+        if (symbol != 'B' && symbol != 'W') {
+            throw new IllegalArgumentException("The symbol must be 'B' or 'W'.");
+        }
         this.name = name;
         this.symbol = symbol;
     }
