@@ -182,4 +182,25 @@ public class Board {
         }
         return false;
     }
+
+    /**
+     * Prints the current score for both players.
+     */
+    public void printScore() {
+        int blackScore = 0;
+        int whiteScore = 0;
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (board[i][j] == BLACK) {
+                    blackScore++;
+                } else if (board[i][j] == WHITE) {
+                    whiteScore++;
+                }
+            }
+        }
+
+        System.out.println("Black (B): " + blackScore);
+        System.out.println("White (W): " + whiteScore);
+    }
 }
