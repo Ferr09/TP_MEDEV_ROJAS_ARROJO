@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Tp_medev_Project" default="build" basedir="tp">
+
+    <!-- Define properties -->
+    <property name="src.main.dir" value="src/main/java"/>
+    <property name="src.test.dir" value="src/test/java"/>
+    <property name="build.dir" value="target"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="test.classes.dir" value="${build.dir}/test"/>
+    <property name="reports.dir" value="${build.dir}/reports/tests"/>
+    <property name="docs.dir" value="docs"/>
+    <property name="target.dir" value="${build.dir}/target"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+
+    <!-- Check dependencies -->
+    <target name="checkDependencies" description="Check if dependencies are satisfied">
+        <echo message="Source directory is ${src.main.dir}"/>
+        <echo message="Classes directory is ${classes.dir}"/>
+
+        <condition property="src.available">
+            <and>
+                <available file="${src.main.dir}" type="dir"/>
+                <available file="${classes.dir}" type="dir"/>
+            </and>
+        </condition>
+
+        <mkdir dir="${target.dir}"/>
+        <mkdir dir="${docs.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+    </target>
+
+    <!-- Target to clean the project -->
+    <target name="clean" description="Deletes build files and directories" depends="checkDependencies">
+        <delete dir="${classes.dir}"/>
+        <delete dir="${docs.dir}"/>
+        <delete dir="${target.dir}"/>
+        <delete dir="${jar.dir}"/>
+    </target>
+
+    <!-- Target to initialize necessary directories -->
+    <target name="init" description="Creates necessary directories" depends="clean">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${reports.dir}"/>
+    </target>
+
+    <!-- Target to compile main classes -->
+    <target name="compile" description="Compiles main source code" depends="init">
+        <javac srcdir="${src.main.dir}" destdir="${classes.dir}">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Target to compile test classes -->
+    <target name="compile-tests" description="Compiles test source code" depends="compile">
+        <javac srcdir="${src.test.dir}" destdir="${test.classes.dir}">
+            <classpath>
+                <path>
+                    <pathelement path="${classes.dir}"/>
+                    <fileset dir="lib">
+                        <include name="**/*.jar"/>
+                    </fileset>
+                </path>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Target to execute unit tests -->
+    <target name="test" description="Executes unit tests" depends="compile-tests">
+        <junit printsummary="true" haltonfailure="true">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <pathelement path="${test.classes.dir}"/>
+                <fileset dir="lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+            <formatter type="xml"/>
+            <formatter type="plain"/>
+        </junit>
+    </target>
+
+    <!-- Target to build the application -->
+    <target name="build" description="Build the application" depends="checkDependencies" if="src.available">
+        <echo message="Building application..."/>
+        <javac srcdir="${src.main.dir}" destdir="${classes.dir}" includeAntRuntime="false"/>
+        <echo message="Build complete!"/>
+    </target>
+
+    <!-- Target to generate Javadoc -->
+    <target name="javadoc" description="Generate Javadoc documentation" depends="checkDependencies">
+        <javadoc sourcepath="${src.main.dir}" 
+                 destdir="${docs.dir}" 
+                 author="true" 
+                 version="true" 
+                 windowtitle="Documentation" 
+                 doctitle="Documentation"
+                 use="true"
+                 charset="UTF-8">
+            <fileset dir="${src.main.dir}" includes="**/*.java"/>
+        </javadoc>
+        <echo message="Documentation created in folder '${docs.dir}'."/>
+    </target>
+
+    <!-- Target to create JAR -->
+    <target name="jar" description="Package compiled classes into a JAR file" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/Tp_medev_Project.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="fr.centrale.tp_medev.Tp_medev"/>
+            </manifest>
+        </jar>
+        <echo message="JAR file created at ${jar.dir}/Tp_medev_Project.jar"/>
+    </target>
+
+</project>
