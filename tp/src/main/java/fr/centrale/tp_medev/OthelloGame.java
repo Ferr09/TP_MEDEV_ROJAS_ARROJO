@@ -25,4 +25,43 @@ public class OthelloGame {
         player2 = new Player("Player 2", Board.WHITE);
         currentPlayer = player1;
     }
+
+    /**
+     * Starts and manages the game loop.
+     */
+    public void playGame() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            board.display();
+            if (!board.hasValidMove(currentPlayer.getSymbol())) {
+                System.out.println("No valid moves for " + currentPlayer.getName() + ". Skipping turn.");
+                switchPlayer();
+                if (!board.hasValidMove(currentPlayer.getSymbol())) {
+                    System.out.println("No valid moves for both players. Game over.");
+                    break;
+                }
+                continue;
+            }
+
+            System.out.println("Current player: " + currentPlayer.getName() + " (" + currentPlayer.getSymbol() + ")");
+            System.out.print("Enter your move (column and row): ");
+
+            char colChar = scanner.next().charAt(0);
+            int col = convertToIndex(colChar);
+            int row = scanner.nextInt() - 1;
+
+            if (board.isValidMove(row, col, currentPlayer.getSymbol())) {
+                board.makeMove(row, col, currentPlayer.getSymbol());
+                switchPlayer();
+            } else {
+                System.out.println("Invalid move. Try again.");
+            }
+        }
+
+        scanner.close();
+        board.display();
+        System.out.println("Game over. Final score:");
+        board.printScore();
+    }
 }
