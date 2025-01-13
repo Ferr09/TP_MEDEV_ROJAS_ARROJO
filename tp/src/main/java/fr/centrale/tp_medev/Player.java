@@ -8,6 +8,7 @@ package fr.centrale.tp_medev;
 public class Player {
 
     private final String name;
+    private final char symbol;
 
     /**
      * Constructs a new player.
@@ -15,8 +16,9 @@ public class Player {
      * @param name The name of the player.
      * @param symbol The symbol representing the player ('B' or 'W').
      */
-    public Player(String name) {
+    public Player(String name, char symbol) {
         this.name = name;
+        this.symbol = symbol;
     }
 
     /**
@@ -26,5 +28,14 @@ public class Player {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Gets the player's symbol.
+     *
+     * @return The symbol representing the player.
+     */
+    public char getSymbol() {
+        return symbol;
     }
 }
